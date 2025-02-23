@@ -1,0 +1,162 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Amazon Ember', Arial, sans-serif;
+}
+
+
+/* Header Styles */
+.header {
+  height: 60px;
+  background:#131921;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  color:#FFFFFF;
+  gap: 20px;
+}
+
+.header_left {
+  display: flex;
+  align-items: center;
+  /* gap: 100px; */
+  /* width:100% */
+}
+.deliver_to{
+  display: flex;
+flex-direction: column;
+}
+.header .header_left .Amlogo{
+width: 10%;
+height: 10px;
+position: fixed;
+margin:0 auto;
+background-color: #146EB4;
+border-style: dotted;
+}
+
+
+.header_nav .header_left a:hover{
+border: #EAEDED, solid, 1px;
+}
+.header_logo {
+  width: 30px;
+}
+
+.header_delivery {
+  display: flex;
+  align-items: center;
+  background-color: #146EB4;
+  padding-right: 20px;
+  
+}
+
+.delivery_line1 {
+  color: #CCCCCC;
+  font-size: 0.70rem;
+}
+
+.delivery_line2 {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.header_search {
+  flex: 1;
+  max-width: 1200px;
+  display: flex;
+  height: 40px;
+}
+
+.search_dropdown {
+  width: 50px;
+  border-radius: 4px 0 0 4px;
+  background-color: #D4D4D4;
+  border: none;
+  color: #787272;
+}
+.search_dropdown:hover{
+  color: black;
+  background-color: #b2adad;
+}
+.search_input {
+  flex: 1;
+  padding: 0 10px;
+  border: none;
+}
+.header_search:focus-within{
+  border: #FEBD69, solid, 4px;
+  border-radius: 10px;
+}
+
+.search_button {
+  width: 45px;
+  background: #FEBD69;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+.search_button:hover{
+  background-color: #eb9d37;
+}
+.header_nav {
+  display: flex;
+  gap: 20px;
+}
+.language{
+  padding-top: 8px;
+  display: flex;
+  gap: 5px;
+  color: #EAEDED;
+
+}
+.header_nav a:hover{
+  border: white, solid, 1px;
+}
+.nav_item {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 10px;
+  color: #EAEDED;
+}
+.nav_line1 {
+  font-size: 0.75rem;
+}
+.nav_line2 {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.cart {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: #EAEDED;
+}
+
+.cart_icon {
+  width: 500px;
+}
+
+.cart_count {
+  /* position: fixed; */
+  top: -10px;
+  right: 10px;
+  color:#FEBD69;
+  background-color:#131921;
+  font-weight: 700;
+}
+.cart_text{
+color: #FFFFFF;
+}
+.nav_itemcart{
+padding: 10px;
+}
+
+.header_nav .flag{
+  height: 15px;
+  margin: 0 auto;
+  /* pad: 10px; */
+}
