@@ -33,7 +33,7 @@ height: auto;
 }
 .header_left a:hover{
   border: #FFFFFF, solid, 1px;
-   text-decoration: none;
+   
 }
 .header_delivery:hover{
   border: #FFFFFF, solid, 1px;
@@ -122,7 +122,6 @@ border: #EAEDED, solid, 1px;
 }
 .header_nav a:hover{
   border: white, solid, 1px;
-  text-decoration: none;
 }
 .nav_item {
   display: flex;
@@ -130,6 +129,7 @@ border: #EAEDED, solid, 1px;
   padding: 5px 10px;
   color: #EAEDED;
 }
+
 .nav_line1 {
   font-size: 0.75rem;
 
@@ -152,12 +152,12 @@ border: #EAEDED, solid, 1px;
 
 .cart_count {
   position: absolute;
-  right: 039px;
+  right: 038px;
   top: 5px;
   padding: 0px 3px;
   color:#FEBD69;
   background-color:#131921;
-  border-radius: 5px;
+  border-radius: 6px;
   font-weight: 700;
 }
 .cart_text{
