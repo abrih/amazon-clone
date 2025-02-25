@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { CiLocationOn } from "react-icons/ci";
 import { MdOutlineArrowDropDown } from "react-icons/md";
-import { BiCart } from "react-icons/bi";
+import { BiCartAdd } from "react-icons/bi";
 import style from './Header.module.css'
 
 const Header = () => {
@@ -16,13 +16,14 @@ const Header = () => {
       <div className={style.header_left}>
         {/* logo */}
         <a href="/">
-        <div className={style.Amlogo}>
+          <div className={style.Amlogo1}>
             <img
+              className={style.Amlogo}
               src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
               alt="Amazon logo"
             />
-          <span>Prime</span>
-        </div>
+           
+          </div>
         </a>
 
         {/* deliver to */}
@@ -46,6 +47,7 @@ const Header = () => {
         <input
           className={style.search_input}
           type="text"
+          placeholder="Search Amazon"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
@@ -92,7 +94,7 @@ const Header = () => {
             >
               <div className={style.cart}>
                 <span className={style.cart_count}>{cartItems}</span>
-                <BiCart size={35} />
+                <BiCartAdd size={38} />
                 <span className={style.cart_text}>Cart</span>
               </div>
             </div>

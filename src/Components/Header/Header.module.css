@@ -21,22 +21,28 @@
 .header_left {
   display: flex;
   align-items: center;
-  /* gap: 100px; */
-  /* width:100% */
+  gap: 20px;
+}
+
+.Amlogo1 {
+      display: flex;
+}
+.Amlogo{
+max-width: 100px;
+height: auto;
+}
+.header_left a:hover{
+  border: #FFFFFF, solid, 1px;
+   text-decoration: none;
+}
+.header_delivery:hover{
+  border: #FFFFFF, solid, 1px;
+  padding: 6px; 
 }
 .deliver_to{
   display: flex;
 flex-direction: column;
 }
-.header .header_left .Amlogo{
-width: 10%;
-height: 10px;
-position: fixed;
-margin:0 auto;
-background-color: #146EB4;
-border-style: dotted;
-}
-
 
 .header_nav .header_left a:hover{
 border: #EAEDED, solid, 1px;
@@ -48,7 +54,6 @@ border: #EAEDED, solid, 1px;
 .header_delivery {
   display: flex;
   align-items: center;
-  background-color: #146EB4;
   padding-right: 20px;
   
 }
@@ -56,11 +61,14 @@ border: #EAEDED, solid, 1px;
 .delivery_line1 {
   color: #CCCCCC;
   font-size: 0.70rem;
+  text-decoration: none;
 }
+
 
 .delivery_line2 {
   font-size: 0.8rem;
   font-weight: 600;
+  text-decoration: none;
 }
 
 .header_search {
@@ -106,7 +114,7 @@ border: #EAEDED, solid, 1px;
   gap: 20px;
 }
 .language{
-  padding-top: 8px;
+  padding-top: 20px;
   display: flex;
   gap: 5px;
   color: #EAEDED;
@@ -114,6 +122,7 @@ border: #EAEDED, solid, 1px;
 }
 .header_nav a:hover{
   border: white, solid, 1px;
+  text-decoration: none;
 }
 .nav_item {
   display: flex;
@@ -123,6 +132,7 @@ border: #EAEDED, solid, 1px;
 }
 .nav_line1 {
   font-size: 0.75rem;
+
 }
 .nav_line2 {
   font-size: 0.9rem;
@@ -141,14 +151,17 @@ border: #EAEDED, solid, 1px;
 }
 
 .cart_count {
-  /* position: fixed; */
-  top: -10px;
-  right: 10px;
+  position: absolute;
+  right: 039px;
+  top: 5px;
+  padding: 0px 3px;
   color:#FEBD69;
   background-color:#131921;
+  border-radius: 5px;
   font-weight: 700;
 }
 .cart_text{
+  padding-top: 12px;
 color: #FFFFFF;
 }
 .nav_itemcart{
