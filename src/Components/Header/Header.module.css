@@ -170,5 +170,17 @@ padding: 10px;
 .header_nav .flag{
   height: 15px;
   margin: 0 auto;
-  /* pad: 10px; */
+}
+
+@media screen and (max-width:576px){
+.header{
+  display: flex;
+  flex-direction: column !important;
+  height: auto;
+}
+
+.language{
+  display: none;
+}
+
 }

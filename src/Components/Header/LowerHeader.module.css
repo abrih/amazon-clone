@@ -1,0 +1,28 @@
+.loweheader-Wrapper ul{
+    /* padding-top: 100px; */
+    display: flex;
+    color: white;
+    background-color: rgb(47, 45, 45);
+    height: 40px;
+    /* justify-content: center; */
+    padding-left: 60px;
+    align-items: center;
+    gap: 80px;
+    list-style: none;
+    font-size: smaller;
+}
+.all{
+    display: flex;
+    font-weight: bold;
+    gap: 10px
+}
+.all p{
+    padding-top: 5px;
+}
+@media screen and (max-width:576px){
+
+.loweheader-Wrapper ul li:not(:first-child){
+  display: none;
+}
+
+}

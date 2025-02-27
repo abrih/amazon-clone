@@ -1,14 +1,17 @@
-import Header from "./Components/Header/Header"
+import Header from "./Components/Header/Header";
+import LowerHeader from "./Components/Header/LowerHeader";
+import './App.css';
 
-import './App.css'
 
 function App() {
 
 
   return (
-      <Header/>
-      
-  )
+    <>
+      <Header />
+      <LowerHeader />
+    </>
+  );
 }
 
 export default App
