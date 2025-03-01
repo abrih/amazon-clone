@@ -1,14 +1,31 @@
-.car_waraper{
-   position: relative;
+/* Selects the element with the class "hero__img" */
+.hero__img {
+  /* Sets the positioning context for child elements */
+  position: relative;
 }
 
-.car_waraper::before {
+/* Targets the pseudo-element ::before of the element with class "hero__img" */
+.hero__img::before {
+  /* Ensures the pseudo-element is generated (required for ::before) */
   content: "";
+
+  /* Positions the pseudo-element absolutely within the parent element */
   position: absolute;
-  /* bottom: 0;  */
+
+  /* Aligns the pseudo-element to the bottom of the parent */
+  bottom: 0;
+
+  /* Sets the width of the pseudo-element to 100% of the parent's width */
   width: 100%;
+
+  /* Sets the height of the pseudo-element to 300 pixels */
   height: 300px;
+
+  /* Applies a linear gradient background to the pseudo-element */
   background-image: linear-gradient(
-    to bottom, rgba(255, 255, 255, 0),  rgba(255, 255, 255, 1),
+    to bottom,
+    /* Direction of the gradient (from top to bottom) */ rgba(255, 255, 255, 0),
+    /* Starting color (transparent white) */ rgba(255, 255, 255)
+      /* Ending color (solid white) */         
   );
 }

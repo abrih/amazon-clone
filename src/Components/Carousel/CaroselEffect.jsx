@@ -5,21 +5,22 @@ import style from "./Carousel.module.css";
 
 const CaroselEffect = () => {
   return (
-    <div>
+    <div >
       <Carousel
         autoplay={true}
         infiniteLoop={true}
         // showIndicators={true}
         showIndicators={false}
-        showThumbs={true}
+        showThumbs={false}
       >
         {img?.map((SingleImg, i) => {
           return <img key={i} src={SingleImg} alt={`Slide ${i}`} />;
         })}
       </Carousel>
-      <div className={style.car_wrapper}></div>
+      <div className={style.hero__img}></div>
     </div>
+    
   );
-};
+}
 
 export default CaroselEffect;
