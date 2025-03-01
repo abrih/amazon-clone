@@ -4,6 +4,7 @@ import { CiLocationOn } from "react-icons/ci";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { BiCartAdd } from "react-icons/bi";
 import style from './Header.module.css'
+import {Link} from "react-router-dom"
 
 const Header = () => {
   // Define missing state variables
@@ -15,16 +16,15 @@ const Header = () => {
     <header className={style.header}>
       <div className={style.header_left}>
         {/* logo */}
-        <a href="/">
+        <Link to="/">
           <div className={style.Amlogo1}>
             <img
               className={style.Amlogo}
               src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
               alt="Amazon logo"
             />
-           
           </div>
-        </a>
+        </Link>
 
         {/* deliver to */}
         <div className={style.header_delivery}>
@@ -57,7 +57,7 @@ const Header = () => {
       </div>
 
       <div className={style.header_nav}>
-        <a href="">
+        <Link to="">
           <div className={style.language}>
             <img
               className={style.flag}
@@ -69,9 +69,9 @@ const Header = () => {
             </section>
             <MdOutlineArrowDropDown />
           </div>
-        </a>
+        </Link>
         <div className={style.header_left}>
-          <a href="">
+          <Link to="/amazon-clone/auth">
             <div className={style.nav_item}>
               <span className={style.nav_line1}>Hello, Sign in</span>
               <span className={style.nav_line2}>
@@ -79,15 +79,15 @@ const Header = () => {
                 <MdOutlineArrowDropDown />
               </span>
             </div>
-          </a>
-          <a href="">
+          </Link>
+          <Link to="/amazon-clone/orders">
             <div className={style.nav_item}>
               <span className={style.nav_line1}>Returns</span>
               <span className={style.nav_line2}>& Orders</span>
             </div>
-          </a>
+          </Link>
           {/* cart */}
-          <a href="">
+          <Link to="/amazon-clone/cart">
             <div
               className={style.nav_itemcart}
               onClick={() => setShowCheckout(!showCheckout)}
@@ -98,7 +98,7 @@ const Header = () => {
                 <span className={style.cart_text}>Cart</span>
               </div>
             </div>
-          </a>
+          </Link>
         </div>
       </div>
     </header>
