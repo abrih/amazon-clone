@@ -22,18 +22,18 @@ const Product = () => {
 
     },[])
 
-  return (
-
-    <>
-    {isLoading? (<Loader/>):( <section className={classes.products_container}>
+return (
+  isLoading ? (
+    <Loader />
+  ) : (
+    <section className={classes.products_container}>
       {products?.map((singleProduct, i) => {
-        // console.log(singleproduct);
+        // console.log(singleProduct);
         return <ProductCard product={singleProduct} key={i} />;
       })}
-    </section>)}
-    </>
-
-  );
+    </section>
+  )
+)
 }
 
 export default Product

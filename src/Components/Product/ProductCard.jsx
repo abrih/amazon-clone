@@ -4,17 +4,19 @@ import classes from "./Product.module.css"
 import {Link} from "react-router-dom"
 
 
-const ProductCard = ({product}) => {
-  // console.log(product);
-  const{image, title, price, id, rating}=product;
+const ProductCard = ({product, flex, renderDesc}) => {
+
+  const { image, title, price, id, rating, description } = product;
+  console.log(product);
   return (
   // https://fakestoreapi.com/products/{id}
-      <div className={classes.card__container}>
+      <div className={`${classes.card__container} ${flex? classes.product_container:""}`}>
         <Link to={`/products/${id}`}>
           <img src={image} alt="" />
         </Link>
         <div>
           <h3>{title}</h3>
+          {renderDesc && <div>{description}</div>}
           <div className={classes.rating}>
             {/* {rating} */}
             <Rating value={rating?.rate} precision={0.1} />
