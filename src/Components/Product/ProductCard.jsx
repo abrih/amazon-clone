@@ -3,11 +3,12 @@ import CurrencyFormat from "../CurrencyFormat/CurrencyFormat"
 import classes from "./Product.module.css"
 import {Link} from "react-router-dom"
 
+
 const ProductCard = ({product}) => {
   // console.log(product);
   const{image, title, price, id, rating}=product;
   return (
-  
+  // https://fakestoreapi.com/products/{id}
       <div className={classes.card__container}>
         <Link to={`/products/${id}`}>
           <img src={image} alt="" />
@@ -16,7 +17,7 @@ const ProductCard = ({product}) => {
           <h3>{title}</h3>
           <div className={classes.rating}>
             {/* {rating} */}
-            <Rating value={rating.rate} precision={0.1} />
+            <Rating value={rating} precision={0.1} />
             {/* {count} */}
             <small>{rating.count}</small>
           </div>

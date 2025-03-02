@@ -17,14 +17,8 @@ const Routering = () => {
         <Route path="/amazon-clone/payments" element={<Payment />} />
         <Route path="/amazon-clone/orders" element={<Orders />} />
         <Route path="/amazon-clone/cart" element={<Cart />} />
-        <Route
-          path="/amazon-clone/category/:name"
-          element={<Results />}
-        />
-        <Route
-          path="/amazon-clone/products/:productId"
-          element={<ProductDetail />}
-        />
+        <Route path="/amazon-clone/category/:name" element={<Results />} />
+        <Route path="/products/:productId" element={<ProductDetail />} />
       </Routes>
     </Router>
   );
