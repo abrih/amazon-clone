@@ -1,16 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { CiLocationOn } from "react-icons/ci";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { BiCartAdd } from "react-icons/bi";
 import style from './Header.module.css'
 import {Link} from "react-router-dom"
+import {DataContext} from "../DataProvider/DataProvider";
 
 const Header = () => {
   // Define missing state variables
   const [searchQuery, setSearchQuery] = useState("");
   const [showCheckout, setShowCheckout] = useState(false);
-  const [cartItems, setCartItems] = useState(0); // Set initial value of cart items (0 or from an API if applicable)
+  // const [cartItems, setCartItems] = useState(0); // Set initial value of cart items (0 or from an API if applicable)
+
+const[{basket},dispatch]=useContext(DataContext)
+console.log(basket.length);
+
+
+
+
 
   return (
     <header className={style.header}>
@@ -93,7 +101,7 @@ const Header = () => {
               onClick={() => setShowCheckout(!showCheckout)}
             >
               <div className={style.cart}>
-                <span className={style.cart_count}>{cartItems}</span>
+                <span className={style.cart_count}>{basket?.length}</span>
                 <BiCartAdd size={38} />
                 <span className={style.cart_text}>Cart</span>
               </div>
