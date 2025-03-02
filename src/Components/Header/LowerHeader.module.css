@@ -10,7 +10,17 @@
     gap: 80px;
     list-style: none;
     font-size: smaller;
+
 }
+.fixed{
+    position: relative;
+    position: sticky;
+    top: 59px;
+    z-index: 100;
+}
+
+
+
 .all{
     display: flex;
     font-weight: bold;

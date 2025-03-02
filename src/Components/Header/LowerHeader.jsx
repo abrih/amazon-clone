@@ -8,6 +8,8 @@ const LowerHeader = () => {
 
 
   return (
+    <section className={style.fixed} >
+
     <div className={style["loweheader-Wrapper"]}>
       <ul>
         <li className={style.all}>
@@ -21,6 +23,7 @@ const LowerHeader = () => {
         <li>Sell</li>
       </ul>
     </div>
+    </section>
   );
 }
 

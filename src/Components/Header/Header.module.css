@@ -6,6 +6,11 @@
   font-family: 'Amazon Ember', Arial, sans-serif;
 }
 
+.fixed{
+  position: sticky;
+  top:0px;
+  z-index: 100;
+}
 
 /* Header Styles */
 .header {

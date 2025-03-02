@@ -21,6 +21,8 @@ console.log(basket.length);
 
 
   return (
+    <section className={style.fixed} >
+
     <header className={style.header}>
       <div className={style.header_left}>
         {/* logo */}
@@ -110,6 +112,7 @@ console.log(basket.length);
         </div>
       </div>
     </header>
+    </section>
   );
 };
 
