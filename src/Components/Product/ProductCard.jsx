@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { DataContext } from "../DataProvider/DataProvider";
 import { Type } from "../../Utility/actiontype";
 
-const ProductCard = ({product, flex, renderDesc}) => {
+const ProductCard = ({product, flex, renderDesc, renderAdd}) => {
 
   const { image, title, price, id, rating, description } = product;
   // console.log(product);
@@ -40,9 +40,11 @@ const ProductCard = ({product, flex, renderDesc}) => {
       </div>
       {/* {price} */}
       <CurrencyFormat amount={price} />
-      <button className={classes.button} onClick={addToCart}>
+      {
+        renderAdd && <button className={classes.button} onClick={addToCart}>
         add to cart
       </button>
+      }
     </div>
   );
 };

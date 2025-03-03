@@ -29,7 +29,8 @@ return (
     <section className={classes.products_container}>
       {products?.map((singleProduct, i) => {
         // console.log(singleProduct);
-        return <ProductCard product={singleProduct} key={i} />;
+        return <ProductCard key={i} product={singleProduct} renderAdd={true} />;
+       
       })}
     </section>
   )
