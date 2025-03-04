@@ -128,16 +128,23 @@ border: #EAEDED, solid, 1px;
 .header_nav a:hover{
   border: white, solid, 1px;
 }
+.header_nav a{
+  text-decoration: none;
+}
 .nav_item {
   display: flex;
   flex-direction: column;
   padding: 5px 10px;
   color: #EAEDED;
+  text-decoration: none;
 }
 
 .nav_line1 {
   font-size: 0.75rem;
+  text-decoration: none;
+
 }
+
 .nav_line2 {
   font-size: 0.9rem;
   font-weight: 700;
