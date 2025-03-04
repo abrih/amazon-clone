@@ -5,12 +5,17 @@ import { DataContext } from "../../Components/DataProvider/DataProvider";
 import ProductCard from "../../Components/Product/ProductCard";
 import CurrencyFormat from "../../Components/CurrencyFormat/CurrencyFormat";
 import { Link } from "react-router-dom";
+import{Type}from "../../Utility/action.type"
+import { IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
+
 
 const Cart = () => {
   const [{ basket, user }, dispatch] = useContext(DataContext);
-  const total = basket.reduce((amount, item) => {
-    return item.price + amount;
-  }, 0);
+  // console.log(basket);
+  const total = basket.reduce((amount, item) =>  amount + item.price * item.amount, 0)
+    console.log(total);
+
   return (
     <LayOut>
       <section className={classes.container}>
@@ -18,8 +23,9 @@ const Cart = () => {
           <h2>Hello</h2>
           <h3> Your shopping basket</h3>
           <hr />
+          <div>
           {basket?.length == 0 ? (
-            <p>Opps! No items in your basket</p>
+            <p>No items in your basket, pls add item</p>
           ) : (
             basket?.map((item, i) => {
               return (
@@ -33,6 +39,7 @@ const Cart = () => {
               );
             })
           )}
+          </div>
         </div>
 
         {basket?.length !== 0 && (

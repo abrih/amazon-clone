@@ -9,3 +9,4 @@ export const DataProvider = ({ children, reducer, initialState }) => {
     </DataContext.Provider>
   );
 };
+

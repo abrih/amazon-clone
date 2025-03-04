@@ -4,14 +4,14 @@ import classes from "./Product.module.css"
 import {Link} from "react-router-dom"
 import { useContext } from "react";
 import { DataContext } from "../DataProvider/DataProvider";
-import { Type } from "../../Utility/actiontype";
+import { Type } from "../../Utility/action.type";
 
 const ProductCard = ({product, flex, renderDesc, renderAdd}) => {
 
   const { image, title, price, id, rating, description } = product;
   // console.log(product);
   const [state, dispatch] = useContext(DataContext);
-  console.log(state);
+  // console.log(state);
   const addToCart = () => {
     dispatch({
       type: Type.ADD_TO_BASKET,
@@ -21,9 +21,7 @@ const ProductCard = ({product, flex, renderDesc, renderAdd}) => {
   return (
     // https://fakestoreapi.com/products/{id}
     <div
-      className={`${classes.card__container} ${
-        flex ? classes.product_container : ""
-      }`}
+      className={`${classes.card__container} ${ flex ? classes.product_container : ""}`}
     >
       <Link to={`/products/${id}`}>
         <img src={image} alt="" />
