@@ -44,22 +44,35 @@ const Cart = () => {
               <p>No items in your basket, pls add item</p>
             ) : (
               basket?.map((item, i) => {
-              
-                return (<section >
-                  <ProductCard
-                    key={i}
-                    product={item}
-                    renderDesc={true}
-                    flex={true}gir
-                    renderAdd={false}
-                  />
+              console.log(item);
+                return (
+                  <section className={classes.cart_product}>
+                    <ProductCard
+                      key={i}
+                      product={item}
+                      renderDesc={true}
+                      flex={true}
+                      gir
+                      renderAdd={false}
+                    />
 
-                  <div>
-                    <button onClick={() => increment(item)}>+</button>
-                    <button onClick={() => decrement(item.id)}>-</button>
-                  </div>
-                </section>
-              )})
+                    <div className={classes.btn_container}>
+                      <button
+                        className={classes.btn}
+                        onClick={() => increment(item)}
+                      >
+                        <IoIosArrowUp size={35} />
+                      </button>
+                      <span>{item.amount}</span>
+                      <button
+                        className={classes.btn}
+                        onClick={() => decrement(item.id)}
+                      >
+                        <IoIosArrowDown size={35} />
+                      </button>
+                    </div>
+                  </section>
+                );})
             )}
           </div>
         </div>
