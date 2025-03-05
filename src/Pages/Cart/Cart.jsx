@@ -1,102 +1,76 @@
-import React, { useContext } from "react";
-import classes from "./Cart.module.css";
-import LayOut from "../../Components/Layout/LayOut";
-import { DataContext } from "../../Components/DataProvider/DataProvider";
-import ProductCard from "../../Components/Product/ProductCard";
-import CurrencyFormat from "../../Components/CurrencyFormat/CurrencyFormat";
-import { Link } from "react-router-dom";
-import { Type } from "../../Utility/action.type";
+import classes from "./Cart.module.css"
+import Layout from "../../components/Layout/Layout"
+import { useContext } from "react"
+import ProductCard from "../../components/Product/ProductCard"
+import { DataContext } from "../../components/DataProvider/DataProvider"
+import CurrencyFormat from "../../components/CurrencyFormat/CurrencyFormat"
+import { Link } from "react-router-dom"
 import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
+import { Type } from "../../Utility/action.type"
 
 const Cart = () => {
-  const [{ basket, user }, dispatch] = useContext(DataContext);
-  // console.log(basket);
-  const total = basket.reduce(
-    (amount, item) => amount + item.price * item.amount,
-    0
-  );
-  // console.log(total);
+    const [{ basket, user }, dispatch] = useContext(DataContext)
+    const total = basket?.reduce((amount, item) => { return amount + item.amount * item.price }, 0)
 
-  const increment = (item) => {
-    dispatch({
-      type: Type.ADD_TO_BASKET,
-      item
-    });
-  };
+    const increment = (item) => {
+        dispatch({
+            type: Type.ADD_TO_BASKET,
+            item
+        })
+    }
+    const decrement = (id) => {
+        dispatch({
+            type: Type.REMOVE_FROM_BASKET,
+            id
+        })
+    }
+    return (
+        <Layout>
+            <section className={classes.container}>
+                <div className={classes.cart__container}>
+                    <h2>Hello</h2>
+                    <h3>Your shopping basket</h3>
+                    <hr />
 
-  const decrement = (id) => {
-    dispatch({
-      type: Type.REMOVE_FROM_BASKET,
-      id
-    });
-  };
+                    {basket?.length === 0 ? <p>Opps! Your Cart is Empty</p> : (
+                        basket?.map((item, index) => (
+                            <>
+                                <section className={classes.cart_product}>
+                                    <ProductCard
+                                        key={index}
+                                        product={item}
+                                        renderDescription={true}
+                                        renderAdd={false}
+                                        flex={true}
+                                    />
 
-  return (
-    <LayOut>
-      <section className={classes.container}>
-        <div className={classes.cart_container}>
-          <h2>Hello</h2>
-          <h3> Your shopping basket</h3>
-          <hr />
-          <div>
-            {basket?.length === 0 ? (
-              <p>No items in your basket, pls add item</p>
-            ) : (
-              basket?.map((item, i) => {
-              console.log("item");
-                return (
-                  <section className={classes.cart_product}>
-                    <ProductCard
-                      key={i}
-                      product={item}
-                      renderDesc={true}
-                      flex={true}
-                      gir
-                      renderAdd={false}
-                    />
-
-                    <div className={classes.btn_container}>
-                      <button
-                        className={classes.btn}
-                        onClick={() => increment(item)}
-                      >
-                        <IoIosArrowUp size={35} />
-                      </button>
-                      <span>{item.amount}</span>
-                      <button
-                        className={classes.btn}
-                        onClick={() => decrement(item.id)}
-                      >
-                        <IoIosArrowDown size={35} />
-                      </button>
+                                    <div className={classes.btn_container}>
+                                        <button className={classes.btn} onClick={() => increment(item)}><IoIosArrowUp size={25} /></button>
+                                        <span>{item.amount}</span>
+                                        <button className={classes.btn} onClick={() => decrement(item.id)}><IoIosArrowDown size={25} /></button>
+                                    </div>
+                                </section>
+                            </>
+                        ))
+                    )}
+                </div>
+                {basket?.length !== 0 && (
+                    <div className={`${classes.subtotal} `}>
+                        <div>
+                            <p>Subtotal ({basket.length} items)</p>
+                            <CurrencyFormat amount={total} />
+                        </div>
+                        <span>
+                            <input type="checkbox" />
+                            <small>This order contains a gift</small>
+                        </span>
+                        <Link to="/payments">Proceed to checkout</Link>
                     </div>
-                  </section>
-                );})
-            )}
-          </div>
-        </div>
+                )}
+            </section>
+        </Layout>
+    )
+}
 
-        {basket?.length !== 0 && (
-          <div className={classes.subtotal}>
-            <div>
-              <p>Subtotal({basket?.length} items)</p>
-              <CurrencyFormat amount={total} />
-            </div>
-            <span>
-              <input type="checkbox" />
-              <small> This order contains a gift</small>
-            </span>
-            <button className={classes.paymentbtn}>
-              <Link to="/amazon-clone/payments" className={classes.btn}>
-                continue to checkout
-              </Link>
-            </button>
-          </div>
-        )}
-      </section>
-    </LayOut>
-  );
-};
-
-export default Cart;
+export default Cart

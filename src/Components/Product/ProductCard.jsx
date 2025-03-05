@@ -23,8 +23,7 @@ const ProductCard = ({ product, flex, renderDesc, renderAdd }) => {
     // https://fakestoreapi.com/products/{id}
     <div
       className={`${classes.card__container} ${
-        flex ? classes.product_container : ""
-      }`}
+        flex ? classes.product_flexed : "" }`}
     >
       <Link to={`/products/${id}`}>
         <img src={image} alt="" />
@@ -38,7 +37,6 @@ const ProductCard = ({ product, flex, renderDesc, renderAdd }) => {
           {/* {count} */}
           <small>{rating?.count}</small>
         </div>
-      </div>
       {/* {price} */}
       <CurrencyFormat amount={price} />
       {renderAdd && (
@@ -46,6 +44,7 @@ const ProductCard = ({ product, flex, renderDesc, renderAdd }) => {
           add to cart
         </button>
       )}
+      </div>
     </div>
   );
 };

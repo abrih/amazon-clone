@@ -78,7 +78,7 @@ console.log(basket.length);
               />
               <section>
                 <option value="">EN</option>
-                <option value="">አማ</option>
+                {/* <option value="">አማ</option> */}
               </section>
               <MdOutlineArrowDropDown />
             </div>
