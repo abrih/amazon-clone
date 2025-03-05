@@ -1,15 +1,19 @@
 
-import { FadeLoader } from "react-spinners";
+import { HashLoader } from "react-spinners";
 
 
 const Loader = () => {
   return (
-    <div>
-        style={{display:"flex",
-            alignItems:"center",
-        }}
-
-      <FadeLoader color="#18e1b1" height={19} speedMultiplier={1} />
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "50vh",
+      }}
+    >
+      
+      <HashLoader />
     </div>
   );
 }

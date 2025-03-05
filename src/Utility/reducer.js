@@ -13,12 +13,12 @@ if(!existingItem){
             basket:[...state.basket,{...action.item,ampunt: 1}],
         }
         } else {
-        const updatedItems=state.basket.map((item)=>{
+        const updatedBasket=state.basket.map((item)=>{
              return item.id===action.item.id? {...item,amount:item.amount+1}:item}
         )
         return{
             ...state,
-            basket:updatedItems
+            basket:updatedBasket
         };
         }
 

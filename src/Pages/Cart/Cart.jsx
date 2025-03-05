@@ -21,14 +21,14 @@ const Cart = () => {
   const increment = (item) => {
     dispatch({
       type: Type.ADD_TO_BASKET,
-      item,
+      item
     });
   };
 
   const decrement = (id) => {
     dispatch({
       type: Type.REMOVE_FROM_BASKET,
-      id,
+      id
     });
   };
 
@@ -44,7 +44,7 @@ const Cart = () => {
               <p>No items in your basket, pls add item</p>
             ) : (
               basket?.map((item, i) => {
-              console.log(item);
+              console.log("item");
                 return (
                   <section className={classes.cart_product}>
                     <ProductCard

@@ -9,6 +9,8 @@ import {DataContext} from "../DataProvider/DataProvider";
 import LowerHeader from "./LowerHeader";
 
 const Header = () => {
+
+// const totalItem=basket?.reduce((amount,item)=>{return item.amount+amount},0)
   // Define missing state variables
   const [searchQuery, setSearchQuery] = useState("");
   const [showCheckout, setShowCheckout] = useState(false);
