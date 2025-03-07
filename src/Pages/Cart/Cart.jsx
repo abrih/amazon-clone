@@ -11,6 +11,7 @@ import { Type } from "../../Utility/action.type"
 
 const Cart = () => {
     const [{ basket, user }, dispatch] = useContext(DataContext)
+    
     const total = basket?.reduce((amount, item) => { return amount + item.amount * item.price }, 0)
 
     const increment = (item) => {
