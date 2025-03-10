@@ -7,6 +7,7 @@ import style from './Header.module.css'
 import {Link} from "react-router-dom"
 import {DataContext} from "../DataProvider/DataProvider";
 import LowerHeader from "./LowerHeader";
+import {auth} from"../../Utility/firebase"
 
 const Header = () => {
 
@@ -84,17 +85,25 @@ console.log(basket.length);
             </div>
           </Link>
           <div className={style.header_left}>
-            <Link to="/amazon-clone/auth">
+            <Link to={!user && "/amazon-clone/auth"}>
               <div className={style.nav_item}>
-                <div className={style.nav_line1}>{
-                  user?(<span>Hello, {user?.email?.split("@")[0]}</span>):(<span>Hello,signin</span>) 
-                  
-                  
-                  }</div>
+                <div className={style.nav_line1}>
+                  {user ? (
+                    <>
+                      <span>Hello, {user?.email?.split("@")[0]}</span><br/>
+                      <span onClick={()=>auth.signOut()} >Signout</span>
+                    </>
+                  ) : (
+                    <>
+                    <span>Hello,signin</span>
                 <span className={style.nav_line2}>
+                  <br/>
                   Account & Lists
                   <MdOutlineArrowDropDown />
                 </span>
+                    </>
+                  )}
+                </div>
               </div>
             </Link>
             <Link to="/amazon-clone/orders">
