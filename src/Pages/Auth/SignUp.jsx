@@ -5,6 +5,7 @@ import {getAuth,signInWithEmailAndPassword, createUserWithEmailAndPassword,} fro
 import {DataContext}from "../../Components/DataProvider/DataProvider"
 import {ClimbingBoxLoader} from "react-spinners"
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import {Type} from "../../Utility/action.type"
 
 
@@ -69,7 +70,9 @@ setLoading({signup:false})
     <>
       <div className={classes.sign_in_page}>
         <div className={classes.amazon_img}>
-          <img src="./public/Amazon_2024.svg.png" alt="amazon logo" />
+          <Link to={"/"}>
+            <img src="./public/Amazon_2024.svg.png" alt="amazon logo" />
+          </Link>
         </div>
 
         <div className={classes.sign_in_container}>
@@ -102,9 +105,7 @@ setLoading({signup:false})
               Sign-In
             </button>
           </form>
-            {
-              loading.signin? (<ClimbingBoxLoader />):("")
-            }
+          {loading.signin ? <ClimbingBoxLoader /> : ""}
           <div className="extra-options">
             <a href="#">Forgot your password?</a>
             <p>
@@ -120,12 +121,10 @@ setLoading({signup:false})
               name="signup"
               onClick={authHandler}
               className={classes.signup_btn}
-              >
+            >
               Create your Amazon account
             </button>
-              {
-                loading.signin? (<ClimbingBoxLoader />):("")
-              }
+            {loading.signin ? <ClimbingBoxLoader /> : ""}
           </div>
           {error && (
             <small

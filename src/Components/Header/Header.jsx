@@ -16,7 +16,7 @@ const Header = () => {
   const [showCheckout, setShowCheckout] = useState(false);
   // const [cartItems, setCartItems] = useState(0); // Set initial value of cart items (0 or from an API if applicable)
 
-const[{basket},dispatch]=useContext(DataContext)
+const[{user, basket},dispatch]=useContext(DataContext)
 console.log(basket.length);
 
 
@@ -86,7 +86,11 @@ console.log(basket.length);
           <div className={style.header_left}>
             <Link to="/amazon-clone/auth">
               <div className={style.nav_item}>
-                <span className={style.nav_line1}>Hello, Sign in</span>
+                <div className={style.nav_line1}>{
+                  user?(<span>Hello, {user?.email?.split("@")[0]}</span>):(<span>Hello,signin</span>) 
+                  
+                  
+                  }</div>
                 <span className={style.nav_line2}>
                   Account & Lists
                   <MdOutlineArrowDropDown />
