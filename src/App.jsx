@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { DataContext} from "./Components/DataProvider/DataProvider";
 import {Type} from "./Utility/action.type"
 import {auth}from "./Utility/firebase"
+import payment from "./Pages/Payment/Payment"
 
 function App() {
 
@@ -30,7 +31,7 @@ auth.onAuthStateChanged((authUser)=>{
 
   return (
     <>
-    
+      <payment/>
       <Routing/>
     </>
   );
