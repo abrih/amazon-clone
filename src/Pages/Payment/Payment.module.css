@@ -25,3 +25,13 @@
     max-width: 350px;
     width: 100%;
 }
+.payment_Details{
+    font: 20px;
+}
+.payment_order{
+    display: flex;
+    gap: 5px;
+     padding-top:10px;
+     padding-bottom:10px
+    
+}

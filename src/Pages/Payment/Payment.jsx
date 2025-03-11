@@ -56,7 +56,7 @@ e?.error?.message? setCardError(e.error.message):setCardError("")
         <div className={classes.flex}>
           <h3> Payment methods</h3>
           <div className={classes.payment_card_container}>
-            <div>
+            <div className={classes.payment_Details} >
               <form action="">
                 {/* error */}
                 {cardError && <smal style={{ color: "red" }}>{cardError}</smal>}
@@ -65,11 +65,12 @@ e?.error?.message? setCardError(e.error.message):setCardError("")
                 {/* price */}
                 <div>
                   <div>
-                    <span>
-                      {" "}
-                      Total Order <CurrencyFormat amount={total} />
+                    <span className={classes.payment_order} >
+            
+                      Total Order: <CurrencyFormat amount={total} />
                     </span>
                   </div>
+                  <button style={{backgroundColor: "orange", borderRadius:"3px", border:"solid,orange, 4px"}} >pay now</button>
                 </div>
               </form>
             </div>
