@@ -5,6 +5,7 @@ import React, { useContext, useState } from 'react'
 import ProductCard from "../../Components/Product/ProductCard";
 import { useStripe,useElements,CardElement} from "@stripe/react-stripe-js";
 import CurrencyFormat from "../../Components/CurrencyFormat/CurrencyFormat";
+import { axiosInstance } from "../../Api/axios";
 
 const Payment = () => {
 
@@ -19,11 +20,35 @@ const total = basket?.reduce((amount, item) => { return amount + item.amount * i
   const elements = useElements();
   const [cardError, setCardError] = useState("")
 
+//  handling error message
   const HandleChange=(e)=>{
 console.log(e);
 
 e?.error?.message? setCardError(e.error.message):setCardError("")
   }
+//  handling payment
+
+const HandlePayment=async(e)=>{
+  e.preventDefault();
+  //contact backend||function using axios to get the client amount to be paid
+
+try{
+  const response = await axiosInstance({
+    method: "POST",
+    url: `/payment/create?total=${total}`,
+  });
+console.log(response.data);
+}catch(error){
+console.log(error);
+
+}
+
+  // comfirmation of payment using stripe
+
+
+
+  // after confirmation place in firestore and clear basket
+}
 
 
   return (
@@ -57,7 +82,7 @@ e?.error?.message? setCardError(e.error.message):setCardError("")
           <h3> Payment methods</h3>
           <div className={classes.payment_card_container}>
             <div className={classes.payment_Details} >
-              <form action="">
+              <form onSubmit={HandlePayment} action="">
                 {/* error */}
                 {cardError && <smal style={{ color: "red" }}>{cardError}</smal>}
                 {/* card */}
@@ -70,7 +95,7 @@ e?.error?.message? setCardError(e.error.message):setCardError("")
                       Total Order: <CurrencyFormat amount={total} />
                     </span>
                   </div>
-                  <button style={{backgroundColor: "orange", borderRadius:"3px", border:"solid,orange, 4px"}} >pay now</button>
+                  <button type="submit" style={{backgroundColor: "orange", borderRadius:"3px", border:"solid,orange, 4px"}} >pay now</button>
                 </div>
               </form>
             </div>
