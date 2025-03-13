@@ -1,55 +1,86 @@
-import LayOut from "../../Components/Layout/LayOut"
-import classes from "./Payment.module.css"
-import { DataContext } from "../../Components/DataProvider/DataProvider"
-import React, { useContext, useState } from 'react'
+import LayOut from "../../Components/Layout/LayOut";
+import classes from "./Payment.module.css";
+import { DataContext } from "../../Components/DataProvider/DataProvider";
+import React, { useContext, useState } from "react";
 import ProductCard from "../../Components/Product/ProductCard";
-import { useStripe,useElements,CardElement} from "@stripe/react-stripe-js";
+import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import CurrencyFormat from "../../Components/CurrencyFormat/CurrencyFormat";
 import { axiosInstance } from "../../Api/axios";
+import  {ClipLoader} from "react-spinners"
+import {db} from "../../Utility/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
-
-  const [{user,basket}] = useContext(DataContext);
+  const [{ user, basket }] = useContext(DataContext);
   console.log(user);
-const totalItem= basket?.reduce((amount,item)=>{ return item.amount+amount;},0)
+  const totalItem = basket?.reduce((amount, item) => {
+    return item.amount + amount;
+  }, 0);
 
-// total price
-const total = basket?.reduce((amount, item) => { return amount + item.amount * item.price;}, 0);
+  // always call in side a finction
+  const navigate = useNavigate(); 
+
+  // total price
+  const total = basket?.reduce((amount, item) => {
+    return amount + item.amount * item.price;
+  }, 0);
 
   const stripe = useStripe();
   const elements = useElements();
-  const [cardError, setCardError] = useState("")
 
-//  handling error message
-  const HandleChange=(e)=>{
-console.log(e);
+  const [cardError, setCardError] = useState("");
 
-e?.error?.message? setCardError(e.error.message):setCardError("")
-  }
-//  handling payment
+  const [processing, setProcessing] = useState(false);
 
-const HandlePayment=async(e)=>{
-  e.preventDefault();
-  //contact backend||function using axios to get the client amount to be paid
+  //  handling error message
+  const HandleChange = (e) => {
+    console.log(e);
 
-try{
-  const response = await axiosInstance({
-    method: "POST",
-    url: `/payment/create?total=${total}`,
-  });
-console.log(response.data);
-}catch(error){
-console.log(error);
+    e?.error?.message ? setCardError(e.error.message) : setCardError("");
+  };
+  //  handling payment
 
-}
-
-  // comfirmation of payment using stripe
+  const HandlePayment = async (e) => {
+    e.preventDefault();
 
 
 
-  // after confirmation place in firestore and clear basket
-}
+    try {
+      setProcessing(true);
+      //1- contact backend||function using axios to get the client amount to be paid
+      const response = await axiosInstance({
+        method: "POST",
+        url: `/payment/create?total=${total * 100}`,
+      });
+      console.log(response.data);
+      const clientSecret = response.data?.clientSecret;
+      // 2- comfirmation of payment using stripe - check on stripe website
+      const { paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+        },
+      });
+      console.log(paymentIntent);
+      // 3- after confirmation place the order in firestore and clear basket
+   
 
+await db.collection("users").doc(user.id).collection("orders").doc(paymentIntent.id).set({
+  basket:basket,
+  amount:paymentIntent.amount,
+  created: paymentIntent.created,
+});
+   setProcessing(false);
+
+   
+   navigate("/amazon-clone/orders", {
+     state: { msg: "your order is placed" },
+   });
+
+    } catch (error) {
+      console.log(error);
+      setProcessing(false);
+    }
+  };
 
   return (
     <LayOut>
@@ -81,7 +112,7 @@ console.log(error);
         <div className={classes.flex}>
           <h3> Payment methods</h3>
           <div className={classes.payment_card_container}>
-            <div className={classes.payment_Details} >
+            <div className={classes.payment_Details}>
               <form onSubmit={HandlePayment} action="">
                 {/* error */}
                 {cardError && <smal style={{ color: "red" }}>{cardError}</smal>}
@@ -90,12 +121,13 @@ console.log(error);
                 {/* price */}
                 <div>
                   <div>
-                    <span className={classes.payment_order} >
-            
+                    <span className={classes.payment_order}>
                       Total Order: <CurrencyFormat amount={total} />
                     </span>
                   </div>
-                  <button type="submit" style={{backgroundColor: "orange", borderRadius:"3px", border:"solid,orange, 4px"}} >pay now</button>
+                  <button type="submit"style={{ backgroundColor: "orange",borderRadius: "3px", border: "solid,orange, 4px",}}>
+                    {processing ? ( <div> {" "}<ClipLoader /> <p> Please wait </p></div>) : ("pay now")}
+                  </button>
                 </div>
               </form>
             </div>
@@ -104,8 +136,6 @@ console.log(error);
       </section>
     </LayOut>
   );
-}
+};
 
-export default Payment
-
-
+export default Payment;
