@@ -1,11 +1,12 @@
-import React, { useState, useContext } from 'react'
+import { useState, useContext } from 'react'
 import classes from "./SignUp.module.css"
 import {auth} from "../../Utility/firebase"
 import {getAuth,signInWithEmailAndPassword, createUserWithEmailAndPassword,} from "firebase/auth";
 import {DataContext}from "../../Components/DataProvider/DataProvider"
 import {ClimbingBoxLoader} from "react-spinners"
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from "react-router-dom";
+// import { Link } from 'react-router-dom';
+
 // import {Type} from "../../Utility/action.type"
 
 
@@ -24,6 +25,10 @@ const SignUp = () => {
 const [{user},dispatch] = useContext(DataContext)
 
 const navigate= useNavigate();
+
+
+const navStateData = useLocation()
+console.log(navStateData);
 
 //Loading using React-Spinner
 const [loading,setLoading] =useState({signin:false, sigup:false})
@@ -44,7 +49,8 @@ if (e.target.name==="signin"){
       user:userCredential.user,
     })
     setLoading({signin:false});
-    navigate("/amazon-clone")
+    navigate(navStateData?.state.redirect || "/amazon-clone");
+    // navigate("/amazon-clone");
   })
   .catch((err) => setError(err.message));
   setLoading({signin:false})
@@ -58,7 +64,8 @@ if (e.target.name==="signin"){
       user: userCredential.user,
     })
     setLoading({signup:false});
-    navigate("/amazon-clone")
+   navigate(navStateData?.state.redirect || "/amazon-clone");
+  //  navigate("/amazon-clone");
 })
 .catch((err) => setError(err.message));
 setLoading({signup:false})
@@ -77,6 +84,14 @@ setLoading({signup:false})
 
         <div className={classes.sign_in_container}>
           <h1>Sign-In</h1>
+          {/* //optional chaining  */}
+          {
+            navStateData?.state?.msg && (
+              <small style={{padding:"5px", color:"red", fontWeight:"bold",}} >
+                {navStateData?.state?.msg}
+              </small>
+            )
+          }
           <form>
             <div className={classes.input_group}>
               <label htmlFor="email">Email</label>

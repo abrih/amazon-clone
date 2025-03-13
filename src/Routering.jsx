@@ -9,6 +9,7 @@ import Results from "./Pages/Results/Results";
 import ProductDetail from "./Pages/ProductDetail/ProductDetail";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 
 const stripePromise = loadStripe(
   "pk_test_51R0whRC5WrgQuRWo3BS5T19zIEGDbaaWUtLUZMBqP9wyXFqwNS2MMUCVORqVqHYRRLrbCXlgwNONajXQmN2vcjaF00otuohBxJ"
@@ -24,12 +25,19 @@ const Routering = () => {
         <Route
           path="/amazon-clone/payments"
           element={
+            <ProtectedRoute msg={"you must log in to pay"} redirect={"/amazon-clone/payments"} >
             <Elements stripe={stripePromise}>
               <Payment />
             </Elements>
+            </ProtectedRoute>
           }
         />
-        <Route path="/amazon-clone/orders" element={<Orders />} />
+        <Route path="/amazon-clone/orders" element={
+          <ProtectedRoute msg={"you must log in to see your orders"} redirect={"/amazon-clone/orders"} >
+            <Orders />
+          </ProtectedRoute>
+          
+          } />
         <Route path="/amazon-clone/cart" element={<Cart />} />
         <Route path="/amazon-clone/category/:name" element={<Results />} />
         <Route path="/products/:productId" element={<ProductDetail />} />
