@@ -11,7 +11,7 @@ import {db} from "../../Utility/firebase";
 import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
-  const [{ user, basket }] = useContext(DataContext);
+  const [{ user, basket }, dispatch] = useContext(DataContext);
   console.log(user);
   const totalItem = basket?.reduce((amount, item) => {
     return item.amount + amount;
@@ -69,9 +69,11 @@ await db.collection("users").doc(user.id).collection("orders").doc(paymentIntent
   amount:paymentIntent.amount,
   created: paymentIntent.created,
 });
-   setProcessing(false);
+// epmty the basket
 
-   
+dispatch({type: Type.EMPTY_BASKET})
+
+   setProcessing(false);
    navigate("/amazon-clone/orders", {
      state: { msg: "your order is placed" },
    });
