@@ -32,11 +32,14 @@ const[open,setOpen]= useState(false);
             {/* {open ? <div>Is Open</div> : <div>Is Closed</div>} */}
 
           </li>
+          <ul className={style.sidemenu} >
+
           <li>Today's Deals</li>
           <li>Customer Services </li>
           <li>registery</li>
           <li>gift cards</li>
           <li>Sell</li>
+          </ul>
         </ul>
       </div>
     </section>

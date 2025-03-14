@@ -1,11 +1,11 @@
 /* Selects the element with the class "hero__img" */
-.hero__img {
+.hero_img {
   /* Sets the positioning context for child elements */
   position: relative;
 }
 
 /* Targets the pseudo-element ::before of the element with class "hero__img" */
-.hero__img::before {
+.hero_img::before {
   /* Ensures the pseudo-element is generated (required for ::before) */
   content: "";
 
@@ -24,8 +24,8 @@
   /* Applies a linear gradient background to the pseudo-element */
   background-image: linear-gradient(
     to bottom,
-    /* Direction of the gradient (from top to bottom) */ rgba(255, 255, 255, 0),
-    /* Starting color (transparent white) */ rgba(255, 255, 255)
-      /* Ending color (solid white) */         
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255)
+    
   );
 }

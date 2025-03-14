@@ -24,7 +24,8 @@
 .all{
     display: flex;
     font-weight: bold;
-    gap: 10px
+    gap: 10px;
+    
 }
 .all p{
     padding-top: 5px;
@@ -46,7 +47,8 @@
 .menu {
   /* position: absolute; */
   
-display: block;
+display: flex;
+ flex-direction: column;
   list-style-type: none;
   margin: 5px 0;
   padding: 0;
@@ -57,14 +59,26 @@ display: block;
 
 .menu  li {
   margin: 0;
- background-color: rgb(47, 45, 45);
- display: block;
+ display: flex;
+ color: black;
+  flex-direction: column;
+
 }
 .menu li{
     display: block;
 }
 
 .menu  li:hover {
-  background-color: rgb(47, 45, 45);
+  /* background-color: rgb(47, 45, 45); */
 }
 
+@media screen and (max-width:576px){
+.menu{
+display:block
+}
+
+.sidemenu{
+  display: none;
+}
+
+}
