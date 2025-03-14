@@ -9,6 +9,7 @@ import { axiosInstance } from "../../Api/axios";
 import  {ClipLoader} from "react-spinners"
 import {db} from "../../Utility/firebase";
 import { useNavigate } from "react-router-dom";
+import { Type} from "../../Utility/action.type";
 
 const Payment = () => {
   const [{ user, basket }, dispatch] = useContext(DataContext);
@@ -64,11 +65,18 @@ const Payment = () => {
       // 3- after confirmation place the order in firestore and clear basket
    
 
-await db.collection("users").doc(user.id).collection("orders").doc(paymentIntent.id).set({
+await db
+.collection("users")
+.doc(user?.uid)
+.collection("orders")
+.doc(paymentIntent.id)
+.set({
   basket:basket,
   amount:paymentIntent.amount,
   created: paymentIntent.created,
 });
+
+console.log("done");
 // epmty the basket
 
 dispatch({type: Type.EMPTY_BASKET})
